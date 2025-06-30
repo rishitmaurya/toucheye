@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+dist/
+logs/
+env/
+folder_create.py
