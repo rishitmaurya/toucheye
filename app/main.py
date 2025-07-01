@@ -11,7 +11,7 @@ from app.gui import MainWindow
 def main():
     cfg = Config()
     cam = Camera()
-    vision = Vision("resources/master_images/test.jpg")
+    vision = Vision("resources/master_images/roof.jpg")
     logger = Logger()
     task_manager = TaskManager(cam, vision, logger, cfg.threshold)
 

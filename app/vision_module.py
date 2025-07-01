@@ -1,5 +1,7 @@
 # app/vision_module.py
 import cv2
+from skimage.metrics import structural_similarity as ssim
+import numpy as np
 
 class Vision:
     def __init__(self, master_image_path):
@@ -38,4 +40,10 @@ class Vision:
             flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS
         )
 
+        # --- SSIM for fine-grained difference detection ---
+        ssim_score, diff = ssim(self.master_gray, frame_gray, full=True)
+        diff = (diff * 255).astype("uint8")
+        thresh = cv2.threshold(diff, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
+        
         return match_percentage, result_img
+    
